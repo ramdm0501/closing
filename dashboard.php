@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db.php';
 
 // إجمالي العملاء
@@ -85,6 +86,9 @@ $invoices_count = $closings_count;
             </div>
         </div>
     </div>
+    <?php
+     if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'sales' ) {
+       ?>
     <div class="row g-3 mb-4">
         <div class="col-md-3 col-6">
             <a href="clients.php" class="quick-link">
@@ -92,24 +96,60 @@ $invoices_count = $closings_count;
                 Manage Clients
             </a>
         </div>
+        <?php  }else{ ?>
+            <div class="row g-3 mb-4">
+        <div class="col-md-3 col-6">
+           <a href="#" class="quick-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/6460/6460945.png" width="22" class="me-2 mb-1">
+                you don't have access 
+           </a>
+        </div>
+        <?php } ?>
+        <?php if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'op' ) { ?>
         <div class="col-md-3 col-6">
             <a href="machines.php" class="quick-link">
                 <img src="https://cdn-icons-png.flaticon.com/512/4042/4042368.png" width="22" class="me-2 mb-1">
                 Manage Machines
             </a>
+           
         </div>
+         <?php  }else{ ?>
+            <div class="col-md-3 col-6">
+            <a href="#" class="quick-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/4042/4042368.png" width="22" class="me-2 mb-1">
+                you don't have access
+            </a>
+        </div>
+        <?php } ?>
+        <?php if($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'op' ) { ?>
         <div class="col-md-3 col-6">
-            <a href="closings.php" class="quick-link">
+            <a href="closing.php" class="quick-link">
                 <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" width="22" class="me-2 mb-1">
                 Closings
             </a>
         </div>
+        <?php  }else{ ?>
+            <div class="col-md-3 col-6">
+            <a href="#" class="quick-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" width="22" class="me-2 mb-1">
+                you don't have access
+            </a>
+        </div>
+        <?php } ?>
+        <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'ac' || $_SESSION['role']=='sales') { ?>
         <div class="col-md-3 col-6">
             <a href="invoices.php" class="quick-link">
                 <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" width="22" class="me-2 mb-1">
                 Invoices
             </a>
         </div>
+        <?php }else{ ?>
+            <div class="col-md-3 col-6">
+            <a href="#" class="quick-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" width="22" class="me-2 mb-1">
+                you don't have access
+            </a>
+            <?php }?> 
     </div>
     <!-- مكان لجرافيك مستقبلي أو تقارير إضافية -->
     <div class="card p-3 mb-3 mt-4 text-center">
